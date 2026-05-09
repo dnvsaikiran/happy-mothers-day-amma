@@ -454,7 +454,7 @@ function showFinalScene() {
     galleryContainer.classList.add('hidden');
     appContainer.classList.add('hidden'); // Hide the main app container so final scene moves up
     finalScene.classList.remove('hidden');
-    bgLayer.style.backgroundImage = `url('photos/${flowerBackgrounds[0]}')`; 
+    bgLayer.style.backgroundImage = `url('${flowerBackgrounds[0]}')`; 
 
     // Resume background music for the final message
     if (!audioPlaying) {

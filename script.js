@@ -454,7 +454,7 @@ function showFinalScene() {
     galleryContainer.classList.add('hidden');
     appContainer.classList.add('hidden'); // Hide the main app container so final scene moves up
     finalScene.classList.remove('hidden');
-    bgLayer.style.backgroundImage = `url('${flowerBackgrounds[0]}')`; 
+    bgLayer.style.backgroundImage = `url('photos/${flowerBackgrounds[0]}')`; 
 
     // Resume background music for the final message
     if (!audioPlaying) {
@@ -462,6 +462,14 @@ function showFinalScene() {
         audioPlaying = true;
     }
     initClock();
+
+    const finalMsgElement = document.getElementById('final-message-telugu');
+    const msg = "నేను నీకు దూరంగా ఉన్నా నిన్ను చాలా మిస్ అవుతున్నాను... ఎప్పుడూ నీ గురించే ఆలోచిస్తుంటాను.|నీ చిరునవ్వు నా రోజును సంతోషంగా మారుస్తుంది, కాబట్టి ఎప్పుడూ నవ్వుతూనే ఉండు.|నేను ఫోన్ చేసినప్పుడు ఫోన్ ఎత్తు, నీ ఫోన్ ఎప్పుడూ నీ దగ్గరే ఉంచుకో! 😡😭";
+    
+    isTyping = true;
+    typeWriter(finalMsgElement, msg, () => {
+        // Typing finished
+    });
 }
 
 // Analog Clock Logic

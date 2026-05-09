@@ -30,7 +30,7 @@ function launchCelebration(clickX, clickY) {
     const newParticles = [];
 
     origins.forEach((origin, oi) => {
-        const count = 300; // MASSIVE quantity (1800 total across 6 origins)
+        const count = 150; // Optimized quantity (900 total) to prevent phone lag
         for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = 8 + Math.random() * 25; // Explosive blast
@@ -54,7 +54,7 @@ function launchCelebration(clickX, clickY) {
         }
     });
 
-    allParticles = allParticles.concat(newParticles);
+    allParticles = newParticles; // Instantly clear old particles to prevent freezing the phone
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -420,8 +420,11 @@ function loadGalleryScene() {
     }, 500);
 }
 
+let isTransitioning = false;
+
 function nextGalleryScene() {
-    if (!isTyping) {
+    if (!isTyping && !isTransitioning) {
+        isTransitioning = true;
         galleryText.classList.add('fade-out');
         galleryNextBtn.classList.add('hidden');
         memoryCardWrapper.classList.remove('visible');
@@ -429,11 +432,14 @@ function nextGalleryScene() {
         setTimeout(() => {
             galleryText.classList.remove('fade-out');
             loadGalleryScene();
+            isTransitioning = false;
         }, 500);
     }
 }
 
 galleryNextBtn.addEventListener('click', (e) => {
+    if (isTyping || isTransitioning) return;
+    
     // 🎉 Launch celebration burst at click position
     launchCelebration(e.clientX, e.clientY);
     clearTimeout(slideshowTimeout);

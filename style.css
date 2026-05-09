@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #D4AF37;
+    --gold-light: #F9E596;
+    --dark-bg: #0a0a0a;
+    --text-light: #f5f5f5;
+}
+
+body {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Layers */
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    z-index: -3;
+    transition: background-image 2s ease-in-out;
+    filter: brightness(0.85) saturate(1.5) contrast(1.1); /* Vivid painterly look */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.1), rgba(10,10,10,0.4)); /* Very light overlay to let flowers shine */
+    z-index: -2;
+}
+
+/* Particles Layer */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(-10vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    20% { opacity: 0.6; transform: scale(1); }
+    80% { opacity: 0.6; }
+    100% {
+        transform: translateY(110vh) translateX(20px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Main App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+.app-container.hidden {
+    display: none;
+}
+
+/* --- PHASE 1: Glass Card (Intro) --- */
+.glass-card {
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: opacity 1s, transform 1s;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.glass-card.hidden {
+    display: none;
+}
+
+.text-container {
+    min-height: 80px;
+    margin-bottom: 30px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.buttons-container.hidden {
+    display: none;
+}
+
+/* --- PHASE 2: Gallery --- */
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.gallery-container.hidden {
+    display: none;
+}
+
+.top-quote-container {
+    width: 90%;
+    text-align: center;
+    margin-top: 5vh;
+    min-height: 80px;
+    background: rgba(10, 10, 10, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.memory-card-wrapper {
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.memory-card-wrapper.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.memory-media {
+    max-width: 85vw;
+    max-height: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    object-fit: contain;
+}
+.memory-media.hidden {
+    display: none;
+}
+
+.bottom-controls-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 80px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+/* Typography & Buttons */
+.telugu-text-gold {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.4), 0 4px 20px rgba(0, 0, 0, 0.8);
+    display: inline;
+    line-height: 1.5;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--gold-light);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+.pill-btn {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold-light);
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 1.1rem;
+    padding: 12px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.pill-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
+}
+.pill-btn.hidden {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Final Scene */
+.final-scene {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 20;
+}
+.final-scene.hidden {
+    display: none;
+}
+
+.highlight-text-large {
+    font-size: 2.5rem;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Music Toggle Button (Bottom Left) */
+.music-toggle-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold-light);
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    z-index: 50;
+    transition: all 0.3s;
+}
+.music-toggle-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+}
+
+/* Final Scene Clock Styles */
+.clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.clock {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+    position: relative;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+.center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--gold-light);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background-color: var(--gold);
+    border-radius: 50px;
+}
+
+.hour-hand {
+    width: 4px;
+    height: 50px;
+    margin-left: -2px;
+    z-index: 7;
+}
+
+.minute-hand {
+    width: 3px;
+    height: 75px;
+    margin-left: -1.5px;
+    background-color: var(--gold-light);
+    z-index: 8;
+}
+
+.second-hand {
+    width: 2px;
+    height: 90px;
+    margin-left: -1px;
+    background-color: #ff4500;
+    z-index: 9;
+}
+
+.number {
+    position: absolute;
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    transform: translate(-50%, -50%);
+}
+
+.num1 { top: 13.4%; left: 73.2%; }
+.num2 { top: 26.8%; left: 86.6%; }
+.num3 { top: 50%; left: 93%; }
+.num4 { top: 73.2%; left: 86.6%; }
+.num5 { top: 86.6%; left: 73.2%; }
+.num6 { top: 93%; left: 50%; }
+.num7 { top: 86.6%; left: 26.8%; }
+.num8 { top: 73.2%; left: 13.4%; }
+.num9 { top: 50%; left: 7%; }
+.num10 { top: 26.8%; left: 13.4%; }
+.num11 { top: 13.4%; left: 26.8%; }
+.num12 { top: 7%; left: 50%; }
+
+.final-message-telugu {
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    line-height: 1.8;
+    max-width: 600px;
+    text-align: center;
+    background: rgba(10, 10, 10, 0.5);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 20px;
+}

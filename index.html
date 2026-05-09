@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>మాతృ దినోత్సవ శుభాకాంక్షలు</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Immersive Cinematic Background -->
+    <div id="bg-layer" class="bg-layer"></div>
+    <div class="overlay"></div>
+
+    <!-- Floating Particles Container -->
+    <div id="particles" class="particles"></div>
+
+    <!-- 🎉 Celebration Canvas (confetti + hearts) -->
+    <canvas id="celebration-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+    <!-- Main Content Container -->
+    <div class="app-container" id="app-container">
+        
+        <!-- PHASE 1: Storytelling Intro -->
+        <div id="intro-card" class="glass-card hidden">
+            <div class="text-container">
+                <p id="intro-text" class="telugu-text-gold"></p>
+                <span class="cursor">|</span>
+            </div>
+            <div id="intro-buttons" class="buttons-container hidden">
+                <!-- Buttons injected by JS -->
+            </div>
+        </div>
+
+        <!-- PHASE 2: Gallery Slideshow (Reference Layout) -->
+        <div id="gallery-container" class="gallery-container hidden">
+            <!-- Top Tier: The Voice -->
+            <div class="top-quote-container">
+                <p id="gallery-text" class="telugu-text-gold"></p>
+                <span class="cursor">|</span>
+            </div>
+
+            <!-- Middle Tier: The Core Memory -->
+            <div id="memory-card-wrapper" class="memory-card-wrapper">
+                <img id="scene-image" class="memory-media hidden" src="" alt="Memory">
+                <video id="scene-video" class="memory-media hidden" src="" playsinline></video>
+            </div>
+
+            <!-- Bottom Tier: Navigation Controls -->
+            <div class="bottom-controls-container">
+                <button id="gallery-next-btn" class="pill-btn hidden">నెక్స్ట్... ✨</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PHASE 3: Final Surprise Container -->
+    <div id="final-scene" class="final-scene hidden">
+        <h1 class="highlight-text-large" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 2rem; margin-bottom: 40px; letter-spacing: 2px;">Happy Mother's Day</h1>
+        
+        <div class="clock-container">
+            <div class="clock">
+                <div class="hand hour-hand" id="hourHand"></div>
+                <div class="hand minute-hand" id="minHand"></div>
+                <div class="hand second-hand" id="secHand"></div>
+                <div class="center-dot"></div>
+                <!-- Numbers -->
+                <div class="number num1">1</div>
+                <div class="number num2">2</div>
+                <div class="number num3">3</div>
+                <div class="number num4">4</div>
+                <div class="number num5">5</div>
+                <div class="number num6">6</div>
+                <div class="number num7">7</div>
+                <div class="number num8">8</div>
+                <div class="number num9">9</div>
+                <div class="number num10">10</div>
+                <div class="number num11">11</div>
+                <div class="number num12">12</div>
+            </div>
+        </div>
+
+        <p class="final-message-telugu">
+            నేను నీకు దూరంగా ఉన్నా నిన్ను చాలా మిస్ అవుతున్నాను... ఎప్పుడూ నీ గురించే ఆలోచిస్తుంటాను.<br>
+            నీ చిరునవ్వు నా రోజును సంతోషంగా మారుస్తుంది, కాబట్టి ఎప్పుడూ నవ్వుతూనే ఉండు.<br>
+            నేను ఫోన్ చేసినప్పుడు ఫోన్ ఎత్తు, నీ ఫోన్ ఎప్పుడూ నీ దగ్గరే ఉంచుకో! 😡😭
+        </p>
+
+        <div style="margin-top: 40px;">
+            <button id="restart-btn" class="pill-btn">మళ్ళీ చూద్దాం 🔄</button>
+        </div>
+    </div>
+
+    <!-- Persistent Music Toggle -->
+    <button id="music-toggle" class="music-toggle-btn">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="Amma_Song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -30,7 +30,7 @@ function launchCelebration(clickX, clickY) {
     const newParticles = [];
 
     origins.forEach((origin, oi) => {
-        const count = 150; // Optimized quantity (900 total) to prevent phone lag
+        const count = 167; // 167 * 6 = ~1000 total particles
         for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = 8 + Math.random() * 25; // Explosive blast

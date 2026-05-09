@@ -517,3 +517,26 @@ musicToggleBtn.addEventListener('click', () => {
 });
 
 window.onload = init;
+
+// Add tiny pink heart on click/touch anywhere
+function createTouchHeart(x, y) {
+    const heart = document.createElement('div');
+    heart.className = 'touch-heart';
+    heart.innerHTML = '💖';
+    heart.style.left = x + 'px';
+    heart.style.top = y + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => {
+        heart.remove();
+    }, 1000);
+}
+
+document.addEventListener('click', (e) => {
+    createTouchHeart(e.clientX, e.clientY);
+});
+
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+        createTouchHeart(e.touches[0].clientX, e.touches[0].clientY);
+    }
+}, {passive: true});

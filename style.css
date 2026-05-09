@@ -397,3 +397,25 @@ body {
     border: 1px solid rgba(212, 175, 55, 0.2);
     margin-bottom: 20px;
 }
+
+/* Touch Hearts Animation */
+.touch-heart {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: floatHeart 1s ease-out forwards;
+    z-index: 99999;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%) scale(1.5);
+    }
+}

@@ -225,7 +225,7 @@ const galleryScenes = mediaList.map((filename, index) => {
         id: `gallery-${index}`,
         mediaUrl: `photos/${filename}`,
         type: filename.endsWith('.mp4') ? 'video' : 'image',
-        text: teluguQuotes[index % teluguQuotes.length],
+        text: index < teluguQuotes.length ? teluguQuotes[index] : "",
         bgIndex: index % flowerBackgrounds.length
     };
 });
@@ -412,7 +412,7 @@ function loadGalleryScene() {
         
         memoryCardWrapper.classList.add('visible');
         
-        typeWriter(galleryText, scene.text + " ✨", () => {
+        typeWriter(galleryText, scene.text ? scene.text + " ✨" : "", () => {
             // Show skip button after typing
             galleryNextBtn.classList.remove('hidden');
         });
